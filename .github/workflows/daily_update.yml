@@ -25,6 +25,7 @@ jobs:
         run: |
           python scripts/star_chart.py
           python scripts/alternate_article_tracker.py
+          python scripts/daily_sky_logger.py
           # Add more scripts as needed
 
       - name: Commit and Push Results
