@@ -23,7 +23,8 @@ jobs:
 
       - name: Run Python Scripts
         run: |
-          python scripts/daily_star_chart.py
+          python scripts/star_chart.py
+          python scripts/alternate_article_tracker.py
           # Add more scripts as needed
 
       - name: Commit and Push Results
