@@ -31,7 +31,7 @@ How to Use
 
 	1.	Clone this repository:
 
-git clone https://github.com/yourusername/daily-updates.git
+git clone https://github.com/azeus/daily-updates.git
 
 
 	2.	Navigate to the project directory:
