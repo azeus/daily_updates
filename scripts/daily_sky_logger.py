@@ -4,6 +4,7 @@ import json
 import random
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
+from urllib.parse import urlparse
 
 # API Endpoints
 SUNRISE_SUNSET_API = "https://api.sunrise-sunset.org/json"
@@ -52,7 +53,8 @@ def fetch_night_sky_conditions(lat, lon):
         print("Failed to fetch night sky conditions.")
         return []
 
-# Function to fetch a public webcam image
+
+
 def fetch_webcam_image(lat, lon):
     params = {
         "lat": lat,
@@ -60,12 +62,18 @@ def fetch_webcam_image(lat, lon):
     }
     response = requests.get(WEBCAM_WORLD_URL, params=params)
     if response.status_code == 200:
-        # Use basic scraping to extract a webcam image URL
         html = response.text
+        # Extract potential URL using simple string matching
         start = html.find("img src=") + len("img src=")
         end = html.find('"', start)
         image_url = html[start:end]
-        return image_url
+
+        # Validate the extracted URL
+        if image_url and urlparse(image_url).scheme in ["http", "https"]:
+            return image_url
+        else:
+            print("Invalid image URL found.")
+            return None
     else:
         print("Failed to fetch webcam image.")
         return None
